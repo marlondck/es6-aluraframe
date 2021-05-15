@@ -4,13 +4,14 @@ class Negociacao {
   #valor;
 
   constructor (data, quantidade, valor) {
-    this.#data = data;
+    this.#data = new Date(data.getTime()); // criamos um novo objeto // imutabilidade
     this.#quantidade = quantidade;
     this.#valor = valor;
+    Object.freeze(this); //faz um freeze do objeto porém é shallow (razo) e acaba vazando a data
   }
 
   get data() {
-    return this.#data;
+    return new Date(this.#data.getTime()); // programação defenciva 
   }
 
   get quantidade() {
